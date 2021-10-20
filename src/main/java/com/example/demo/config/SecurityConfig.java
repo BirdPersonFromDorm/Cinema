@@ -26,15 +26,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+
                 .csrf()
                 .disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/user/home").access("hasRole('Admin')") // доступ к страницце только ТЕМ кто админ
                 .antMatchers(HttpMethod.POST, "/user/add").access("hasRole('Admin')") // same
-                .antMatchers(HttpMethod.GET, "/user/user/home").access("hasRole('User')") //доступ к странице только тем у кого роль пользователя.
-                .antMatchers("/user/admin").permitAll()  //Доступ всем, для того чтоб СОЗДАТЬ админа
-                .and()
-                .formLogin().permitAll();
+                .antMatchers(HttpMethod.GET, "/user/user/home").access("hasRole('User')")
+                .antMatchers(HttpMethod.GET, "/films").access("hasRole('Admin')") //доступ к странице только тем у кого роль пользователя.
+                .antMatchers("/user/admin").permitAll()
+                //Доступ всем, для того чтоб СОЗДАТЬ админа
+                    .and()
+                .formLogin()
+                .permitAll()
+                    .and()
+                .logout()
+                .logoutSuccessUrl("/");
 
     }
 

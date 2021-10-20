@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header th:fragment="header">
+        <div class="w3-top">
+            <div class="w3-bar" id="myNavbar">
+                <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a th:href="@{/}" class="w3-bar-item w3-button">HOME</a>
+                <a th:href="@{/films}" class="w3-bar-item w3-button w3-hide-small"><i class=""></i> FILMS</a>
+                <a th:href="@{/about}" class="w3-bar-item w3-button w3-hide-small"><i class="fa"></i> ABOUT</a>
+                <a th:href="@{/login}"  id = "login" class="w3-bar-item w3-button w3-hide-small w3-right ">LOG IN</a>
+                <a th:href="@{/logout}"  id = "logout" class="w3-bar-item w3-button w3-hide-small w3-right ">LOG OUT</a>
+            </div>
+            <script type="text/babel">
+
+                 if (document.cookie != null)
+                 {
+                     document.getElementById("logout").style.display = 'none';
+                     document.getElementById("login").style.display = 'block';
+                 }
+                 else
+                 {
+                     document.getElementById("logout").style.display = 'block';
+                     document.getElementById("login").style.display = 'none';
+                 }
+
+
+
+            </script>
+
+            <!-- Navbar on small screens -->
+            <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+                <a href="@{/films}" class="w3-bar-item w3-button" onclick="toggleFunction()">FILMS</a>
+                <a href="@{/about}" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+                <a href="@{/login}" class="w3-bar-item w3-button w3-right">LOG IN</a>
+                <a href="@{/logout}" class="w3-bar-item w3-button w3-right">LOG OUT</a>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
