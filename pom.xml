@@ -87,16 +87,20 @@
 		</dependency>
 
 
+
 		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>react-prop-types</artifactId>
-			<version>0.4.0</version>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
 		</dependency>
+
 		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>react-dom</artifactId>
-			<version>17.0.2</version>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
+
+
 
 	</dependencies>
 

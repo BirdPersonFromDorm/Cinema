@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Builder
@@ -51,6 +49,7 @@ public class UserService {
         user.setRoles(roles);
         User save = userRepository.save(user);
 
+
         return userDTO.mapToDTO(save);
     }
 
@@ -74,19 +73,10 @@ public class UserService {
         User save = userRepository.save(user);
 
         return userDTO.mapToDTO(save);
-
-//        User admin = User.builder()
-//                .login("admin")
-//                .password("admin")
-//                .roles(Set.of(getUserRole))
-//                .build();
-//
-//        User save = userRepository.save(admin);
-//        return userDTO.mapToDTO(save);
     }
 
 
-    public UserDTO register(User user){
+    public void register(User user){
 
         String encodePwd = encoder.encode(user.getPassword());
 
@@ -97,7 +87,10 @@ public class UserService {
 
         User userFromDB = userRepository.save(user);
 
-        return userDTO.mapToDTO(userFromDB);
+    }
+
+    public User getAllTicketsByUser(String login){
+        return userRepository.findByLogin(login);
     }
 
 
@@ -116,14 +109,14 @@ public class UserService {
 //        return user;
 //    }
 
-//    public List<UserDTO> getAllUsers(){
-//        List<User> all = userRepository.findAll();
-//        List<UserDTO> userDTOToShow = new ArrayList<>();
-//        for (int i = 0; i < all.size(); i++) {
-//            userDTOToShow.add(userDTO.mapToDTO(all.get(i)));
-//        }
-//        return userDTOToShow;
-//    }
+    public List<UserDTO> getAllUsers(){
+        List<User> all = userRepository.findAll();
+        List<UserDTO> userDTOToShow = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++) {
+            userDTOToShow.add(userDTO.mapToDTO(all.get(i)));
+        }
+        return userDTOToShow;
+    }
 
 //    public boolean addUser(User user){
 //        DataBase.users.add(user);

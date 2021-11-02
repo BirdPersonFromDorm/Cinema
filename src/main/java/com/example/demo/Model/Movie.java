@@ -26,6 +26,8 @@ public class Movie {
     private String name;
     @Column(name = "discription")
     private String discription;
+    @Column(name = "img")
+    private String img;
 
     @OneToMany(mappedBy = "movie", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("movie")

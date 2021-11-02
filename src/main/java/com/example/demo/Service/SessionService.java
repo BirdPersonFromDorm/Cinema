@@ -45,6 +45,7 @@ public class SessionService {
     public List<SessionDTO> getTodaySession() {
         List<Session> all = sessionRepository.findAll();
 
+
         return all.stream()
                 .filter(x -> x.getDate().toLocalDate().equals(LocalDate.now()))
                 .filter(x -> Objects.nonNull(x.getMovie()))

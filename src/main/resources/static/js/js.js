@@ -7,7 +7,10 @@ function onClick(element) {
 }
 
 // Change style of navbar on scroll
-window.onscroll = function() {myFunction()};
+window.onscroll = function () {
+    myFunction()
+};
+
 function myFunction() {
     var navbar = document.getElementById("myNavbar");
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
@@ -34,4 +37,26 @@ function showHide() {
     } else {
         x.style.display = 'none';
     }
+}
+
+function allMovie() {
+    var allMovie = document.getElementById("allMovie").style.display = "block";
+    var todayMovie = document.getElementById("todayMovie").style.display = "none";
+    var linkAll = document.getElementById("linkAll").innerHTML;
+
+
+    document.getElementById("allMovie").style.display = allMovie;
+    document.getElementById("todayMovie").style.display = todayMovie;
+    document.getElementById("linkAll").innerHTML = linkAll;
+}
+
+function todayMovie() {
+    var allMovie = document.getElementById("allMovie").style.display = "none";
+    var todayMovie = document.getElementById("todayMovie").style.display = "block";
+    var linkAll = document.getElementById("linkAll").innerHTML;
+
+
+    document.getElementById("allMovie").style.display = allMovie;
+    document.getElementById("todayMovie").style.display = todayMovie;
+    document.getElementById("linkAll").innerHTML = linkAll;
 }

@@ -35,7 +35,6 @@ public class TicketController {
         return ticketService.addTicketByUserId(ticket,userID,SessionId);
     }
 
-
     @GetMapping("/getAll/{id}")
     public Ticket getAllInfo(@PathVariable int id) {
         return ticketService.getAllIngo(id);

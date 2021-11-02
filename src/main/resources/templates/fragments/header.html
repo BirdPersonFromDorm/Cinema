@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,35 +13,29 @@
                 <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a th:href="@{/}" class="w3-bar-item w3-button">HOME</a>
-                <a th:href="@{/films}" class="w3-bar-item w3-button w3-hide-small"><i class=""></i> FILMS</a>
-                <a th:href="@{/about}" class="w3-bar-item w3-button w3-hide-small"><i class="fa"></i> ABOUT</a>
-                <a th:href="@{/login}"  id = "login" class="w3-bar-item w3-button w3-hide-small w3-right ">LOG IN</a>
-                <a th:href="@{/logout}"  id = "logout" class="w3-bar-item w3-button w3-hide-small w3-right ">LOG OUT</a>
-            </div>
-            <script type="text/babel">
-
-                 if (document.cookie != null)
-                 {
-                     document.getElementById("logout").style.display = 'none';
-                     document.getElementById("login").style.display = 'block';
-                 }
-                 else
-                 {
-                     document.getElementById("logout").style.display = 'block';
-                     document.getElementById("login").style.display = 'none';
-                 }
-
-
-
-            </script>
+                    <a th:href="@{/}" class="w3-bar-item w3-button">HOME</a>
+                    <a th:href="@{/movie}" class="w3-bar-item w3-button w3-hide-small"><i class=""></i> FILMS</a>
+                    <a th:href="@{/about}" class="w3-bar-item w3-button w3-hide-small"><i class="fa"></i> ABOUT</a>
+                <div sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}"  class="w3-bar-item w3-button w3-hide-small w3-right ">LOGIN</a>
+                    <a th:href="@{/registration}"  class="w3-bar-item w3-button w3-hide-small w3-right ">REGISTER</a>
+                </div>
+                <div sec:authorize="isAuthenticated() and hasRole('Admin')" >
+                    <a th:href="@{/logout}"   class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
+                    <a sec:authentication="name" th:href="@{/admin}" class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
+                </div>
+                <div sec:authorize="isAuthenticated() and hasRole('User')">
+                    <a th:href="@{/logout}"   class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
+                    <a sec:authentication="name" th:href="@{/account}" class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
+                </div>
+                </div>
 
             <!-- Navbar on small screens -->
             <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-                <a href="@{/films}" class="w3-bar-item w3-button" onclick="toggleFunction()">FILMS</a>
-                <a href="@{/about}" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
-                <a href="@{/login}" class="w3-bar-item w3-button w3-right">LOG IN</a>
-                <a href="@{/logout}" class="w3-bar-item w3-button w3-right">LOG OUT</a>
+                <a th:href="@{/movie}" class="w3-bar-item w3-button" onclick="toggleFunction()">FILMS</a>
+                <a th:href="@{/about}" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+                <a th:href="@{/login}" class="w3-bar-item w3-button w3-right">LOGIN</a>
+                <a th:href="@{/logout}" class="w3-bar-item w3-button w3-right">LOGOUT</a>
             </div>
         </div>
     </header>

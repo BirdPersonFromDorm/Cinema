@@ -3,15 +3,31 @@ package com.example.demo.Controller;
 import com.example.demo.DTO.MovieDTO;
 import com.example.demo.Model.Movie;
 import com.example.demo.Service.MovieService;
+import com.example.demo.Service.SessionService;
+import com.example.demo.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+@Controller
+//@RestController
 @RequestMapping("/movie")
 public class MovieController {
 
     @Autowired
     private MovieService movieService;
+
+    @Autowired
+    private SessionService sessionService;
 
     @PostMapping("/add")
     public MovieDTO addMovie(@RequestBody Movie movie) {
@@ -33,5 +49,20 @@ public class MovieController {
     public Movie getAllInfo(@PathVariable int id){
         return movieService.getAllIngo(id);
     }
+
+    @GetMapping("/all")
+    public List<MovieDTO> getAllUsers(){
+        return movieService.getAllMovie();
+    }
+
+    @GetMapping("")
+    public String getInfo(Model model){
+        model.addAttribute("activePage", "movie");
+        model.addAttribute("movie", movieService.getAllMovie());
+        model.addAttribute("todaySessions", sessionService.getTodaySession());
+        return "movie";
+    }
+
+
 
 }

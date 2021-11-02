@@ -1,13 +1,19 @@
 package com.example.demo.Service;
 
 import com.example.demo.DTO.MovieDTO;
+import com.example.demo.DTO.UserDTO;
 import com.example.demo.Model.Movie;
 import com.example.demo.Model.Session;
+import com.example.demo.Model.User;
 import com.example.demo.repository.MovieRepository;
 import com.example.demo.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -16,9 +22,6 @@ public class MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
-
-    @Autowired
-    private SessionRepository sessionRepository;
 
     @Autowired
     private MovieDTO movieDTO;
@@ -40,5 +43,17 @@ public class MovieService {
         Optional<Movie> byId = movieRepository.findById(id);
         return byId.orElseGet(Movie::new);
     }
+
+
+    public List<MovieDTO> getAllMovie(){
+        List<Movie> all = movieRepository.findAll();
+        List<MovieDTO> movieDTOToShow = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++) {
+            movieDTOToShow.add(movieDTO.mapToDTO(all.get(i)));
+        }
+        return movieDTOToShow;
+    }
+    
+
 
 }

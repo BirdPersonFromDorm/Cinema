@@ -22,6 +22,7 @@ public class SessionDTO {
     private Double price;
     private String movieName;
     private String movieDiscription;
+    private String movieImg;
 
     public SessionDTO mapToDTO(Session session) {
         SessionDTO sessionDTOResponse = new SessionDTO();
@@ -29,6 +30,7 @@ public class SessionDTO {
         sessionDTOResponse.setPrice(session.getPrice());
         sessionDTOResponse.setMovieName(session.getMovie().getName());
         sessionDTOResponse.setMovieDiscription(session.getMovie().getDiscription());
+        sessionDTOResponse.setMovieImg(session.getMovie().getImg());
         return sessionDTOResponse;
     }
 

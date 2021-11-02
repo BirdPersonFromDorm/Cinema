@@ -41,9 +41,9 @@ public class User {
     private Status status;
 
 
-//    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JsonIgnoreProperties("user")
-//    private Set<Ticket> tickets;
+    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("user")
+    private Set<Ticket> tickets;
 
 
     @Override

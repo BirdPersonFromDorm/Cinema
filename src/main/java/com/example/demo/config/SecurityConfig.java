@@ -33,8 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/user/home").access("hasRole('Admin')") // доступ к страницце только ТЕМ кто админ
                 .antMatchers(HttpMethod.POST, "/user/add").access("hasRole('Admin')") // same
                 .antMatchers(HttpMethod.GET, "/user/user/home").access("hasRole('User')")
-                .antMatchers(HttpMethod.GET, "/films").access("hasRole('Admin')") //доступ к странице только тем у кого роль пользователя.
-                .antMatchers("/user/admin").permitAll()
+                .antMatchers(HttpMethod.GET, "/account").access("hasRole('User')")
+                .antMatchers(HttpMethod.GET, "/admin").access("hasRole('Admin')")
+//                .antMatchers(HttpMethod.GET, "/films").access("hasRole('Admin')") //доступ к странице только тем у кого роль пользователя.
                 //Доступ всем, для того чтоб СОЗДАТЬ админа
                     .and()
                 .formLogin()

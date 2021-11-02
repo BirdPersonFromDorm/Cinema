@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cinema</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{../css/main.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<header>
+    <div class="w3-top black-header">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a th:href="@{/}" class="w3-bar-item w3-button">HOME</a>
+            <a th:href="@{/movie}" class="w3-bar-item w3-button w3-hide-small"><i class=""></i> FILMS</a>
+            <a th:href="@{/about}" class="w3-bar-item w3-button w3-hide-small"><i class="fa"></i> ABOUT</a>
+            <div sec:authorize="isAnonymous()">
+                <a th:href="@{/login}"  class="w3-bar-item w3-button w3-hide-small w3-right ">LOGIN</a>
+                <a th:href="@{/registration}"  class="w3-bar-item w3-button w3-hide-small w3-right ">REGISTER</a>
+            </div>
+            <div sec:authorize="isAuthenticated() and hasRole('Admin')" >
+                <a th:href="@{/logout}"   class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
+                <a sec:authentication="name" th:href="@{/admin}" class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
+            </div>
+            <div sec:authorize="isAuthenticated() and hasRole('User')">
+                <a th:href="@{/logout}"   class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
+                <a sec:authentication="name" th:href="@{/account}" class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
+            </div>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a th:href="@{/movie}" class="w3-bar-item w3-button" onclick="toggleFunction()">FILMS</a>
+            <a th:href="@{/about}" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+            <a th:href="@{/login}" class="w3-bar-item w3-button w3-right">LOGIN</a>
+            <a th:href="@{/logout}" class="w3-bar-item w3-button w3-right">LOGOUT</a>
+        </div>
+    </div>
+</header>
+
+
+<main class="w3-content w3-container w3-padding-64 account-main">
+
+    <div class="w3-row-padding">
+        <div class="w3-third w3-container w3-margin-bottom">
+            <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80" alt="Norway" style="width:100%" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+                <p><b>Lorem Ipsum</b></p>
+                <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+            </div>
+        </div>
+
+</main>
+
+
+
+<footer class="w3-center w3-black w3-padding-64 w3-opacity account-footer">
+    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <div class="w3-xlarge w3-section">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapschat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+</footer>
+
+<script type="text/javascript" th:src="@{/js/js.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+</body>
+</html>

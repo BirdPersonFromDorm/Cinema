@@ -6,31 +6,27 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
 
-<div th:replace="~{fragments/header :: header}"></div>
+<div class="body">
 
+    <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="main">
         <p class="sign" align="center">Welcome</p>
-        <form th:action="@{/perform-login}" method="post" class="form1">
-            <input type="text" id="user" name="user" class="un " align="center" placeholder="Username">
-            <input type="password" id="pass" name="pass" class="pass" align="center" placeholder="Password">
+        <form th:action="@{/user/registration}" th:object="${user}" method="post" class="form1">
+            <input th:field="*{login}" id="user" name="user" class="un " align="center" placeholder="Username">
+            <input th:field="*{password}" type="password" id="pass" name="pass" class="pass"  align="center" placeholder="Password">
             <button type="submit" class="submit">LOGIN</button>
         </form>
     </div>
 
-
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/plugins.js"></script>
-<script th:src="@{../js/js.js}"></script>
+</div>
 
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
 </body>
 </html>

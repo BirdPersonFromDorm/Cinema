@@ -22,6 +22,7 @@ public class MovieDTO {
 
     private String movieName;
     private String movieDiscription;
+    private String movieImg;
     @JsonIgnoreProperties("tickets")
     private Set<Session> sessions;
 
@@ -29,6 +30,7 @@ public class MovieDTO {
         MovieDTO movieDTOResponse = new MovieDTO();
         movieDTOResponse.setMovieName(movie.getName());
         movieDTOResponse.setMovieDiscription(movie.getDiscription());
+        movieDTOResponse.setMovieImg(movie.getImg());
         movieDTOResponse.setSessions(movie.getSessions());
         return movieDTOResponse;
     }

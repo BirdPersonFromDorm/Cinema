@@ -6,9 +6,13 @@ import com.example.demo.Model.User;
 import com.example.demo.Service.UserService;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Set;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/user")
@@ -48,12 +52,16 @@ public class UserController {
     @GetMapping("/admin")
     public UserDTO registerUser(){
         return userService.registerUser();
+
     }
 
     @PostMapping("/registration")
-    public UserDTO registration(@RequestBody User user){
-
-        return userService.register(user);
+    public ModelAndView registration(@ModelAttribute User user, Model model){
+        model.addAttribute("activePage", "login");
+        userService.register(user);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
     }
 
 
@@ -69,16 +77,21 @@ public class UserController {
 
 
 
+    @GetMapping("/all")
+    public List<UserDTO> getAllUsers(){
+        return userService.getAllUsers();
+    }
 
-//    @GetMapping("/update/{id}")
+
+
+
+
+
+
+
+    //    @GetMapping("/update/{id}")
 //    public User updateUserById(@PathVariable Long id, @RequestBody User user){
 //        return userService.updateUserById(id, user);
-//    }
-
-
-//    @GetMapping("/all")
-//    public List<UserDTO> getAllUsers(){
-//        return userService.getAllUsers();
 //    }
 
 //    @GetMapping("/all")
