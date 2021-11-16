@@ -1,7 +1,10 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.Movie;
+import com.example.demo.Model.Session;
 import com.example.demo.Model.User;
 import com.example.demo.Service.MovieService;
+import com.example.demo.Service.NewsSercive;
 import com.example.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
+@RequestMapping("")
 public class NavigationController {
 
     @GetMapping("/about")
@@ -29,11 +36,27 @@ public class NavigationController {
         return "registration";
     }
 
-    @GetMapping("/admin")
-    public String getAdmin(Model model) {
-        model.addAttribute("activePage", "admin");
-        return "admin";
+    @GetMapping("/addNewMovies")
+    public String addNewMovies(Model model) {
+        model.addAttribute("movie", new Movie());
+        return "/admin";
     }
+    @GetMapping("/addNewSession")
+    public String addNewSession(Model model) {
+        model.addAttribute("session", new Session());
+        return "/admin";
+    }
+
+    @Autowired
+    private NewsSercive newsSercive;
+
+
+    @RequestMapping(value = "/")
+    public String homepage(Model model) {
+        model.addAttribute("allNews", newsSercive.getAllNews());
+        return "index";
+    }
+
 
 
 }

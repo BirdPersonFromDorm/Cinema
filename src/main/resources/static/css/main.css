@@ -123,21 +123,12 @@ a {
 	text-transform: uppercase;
 }
 
-.wrapper{
-	display: flex;
-	flex-direction: column;
-}
+
 .black-header{
 	background-color: #000;
 	color: #ffffff;
 }
 
-.account-main{
-	flex-grow: 1;
-}
-.account-footer {
-	flex-shrink: 0;
-}
 
 body{
 	background-color: rgba(189, 189, 189, 0.5);
@@ -147,4 +138,39 @@ body{
 }
 .color-for-link{
 	background: #b6b6b6 !important;
+}
+
+.wrapper{
+	min-height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.main{
+	flex: 1 1 auto;
+	width: 80%;
+}
+
+#allSessions, #allMovies{
+	display: none;
+}
+.marg{
+	margin: 5px;
+}
+.padd{
+	padding-bottom: 15px;
+}
+
+#allSessions h1{
+	text-align: center;
+}
+
+
+.fsdfew {
+	margin: 3px 0px;
+	border-bottom: 1px solid white;
+}
+
+.fsdfew:last-child{
+	border-bottom: none;
 }

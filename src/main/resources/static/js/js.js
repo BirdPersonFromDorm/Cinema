@@ -38,7 +38,7 @@ function showHide() {
         x.style.display = 'none';
     }
 }
-
+// movies
 function allMovie() {
     var allMovie = document.getElementById("allMovie").style.display = "block";
     var todayMovie = document.getElementById("todayMovie").style.display = "none";
@@ -59,4 +59,62 @@ function todayMovie() {
     document.getElementById("allMovie").style.display = allMovie;
     document.getElementById("todayMovie").style.display = todayMovie;
     document.getElementById("linkAll").innerHTML = linkAll;
+}
+
+// admin panel
+function allNews() {
+    var allNews = document.getElementById("allNews").style.display = "block";
+    var allUsers = document.getElementById("allUsers").style.display = "none";
+    var allMovies = document.getElementById("allMovies").style.display = "none";
+    var allSessions = document.getElementById("allSessions").style.display = "none";
+    var linkAllUsers = document.getElementById("linkAllUsers").innerHTML;
+
+
+    document.getElementById("allNews").style.display = allNews;
+    document.getElementById("allUsers").style.display = allUsers;
+    document.getElementById("allSessions").style.display = allSessions;
+    document.getElementById("allMovies").style.display = allMovies;
+    document.getElementById("linkAllUsers").innerHTML = linkAllUsers;
+}
+function allUsers() {
+    var allNews = document.getElementById("allNews").style.display = "none";
+    var allUsers = document.getElementById("allUsers").style.display = "block";
+    var allSessions = document.getElementById("allSessions").style.display = "none";
+    var allMovies = document.getElementById("allMovies").style.display = "none";
+    var linkAllUsers = document.getElementById("linkAllUsers").innerHTML;
+
+
+    document.getElementById("allNews").style.display = allNews;
+    document.getElementById("allUsers").style.display = allUsers;
+    document.getElementById("allSessions").style.display = allSessions;
+    document.getElementById("allMovies").style.display = allMovies;
+    document.getElementById("linkAllUsers").innerHTML = linkAllUsers;
+}
+
+function allSessions() {
+    var allNews = document.getElementById("allNews").style.display = "none";
+    var allUsers = document.getElementById("allUsers").style.display = "none";
+    var allMovies = document.getElementById("allMovies").style.display = "none";
+    var allSessions = document.getElementById("allSessions").style.display = "block";
+    var linkAllUsers = document.getElementById("linkAllUsers").innerHTML;
+
+    document.getElementById("allNews").style.display = allNews;
+    document.getElementById("allUsers").style.display = allUsers;
+    document.getElementById("allSessions").style.display = allSessions;
+    document.getElementById("allMovies").style.display = allMovies;
+    document.getElementById("linkAllUsers").innerHTML = linkAllUsers;
+}
+function allMovies() {
+    var allNews = document.getElementById("allNews").style.display = "none";
+    var allUsers = document.getElementById("allUsers").style.display = "none";
+    var allMovies = document.getElementById("allMovies").style.display = "block";
+    var allSessions = document.getElementById("allSessions").style.display = "none";
+    var linkAllUsers = document.getElementById("linkAllUsers").innerHTML;
+
+
+    document.getElementById("allNews").style.display = allNews;
+    document.getElementById("allUsers").style.display = allUsers;
+    document.getElementById("allSessions").style.display = allSessions;
+    document.getElementById("allMovies").style.display = allMovies;
+    document.getElementById("linkAllUsers").innerHTML = linkAllUsers;
 }

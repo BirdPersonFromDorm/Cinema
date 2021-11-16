@@ -53,6 +53,17 @@ public class SessionService {
                 .collect(Collectors.toList());
     }
 
+    public List<SessionDTO> getTomorrowSession() {
+        List<Session> all = sessionRepository.findAll();
+        LocalDate now = LocalDate.now().plusDays(1);
+
+        return all.stream()
+                .filter(x -> x.getDate().toLocalDate().equals(now))
+                .filter(x -> Objects.nonNull(x.getMovie()))
+                .map(x -> sessionDTOResponse.mapToDTO(x))
+                .collect(Collectors.toList());
+    }
+
     public List<SessionDTO> getSessionByDay(String date) {
         List<Session> all = sessionRepository.findAll();
         LocalDate localDate = LocalDate.parse(date);

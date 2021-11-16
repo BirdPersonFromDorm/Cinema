@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class Session {
     @Column(name = "session_id")
     private Integer sessionId;
     @Column(name = "date")
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime date;
     @Column(name = "price")
     private double price;

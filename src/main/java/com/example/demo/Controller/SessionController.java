@@ -7,13 +7,15 @@ import com.example.demo.Model.User;
 import com.example.demo.Service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Set;
 
-@RestController
-//@Controller
+//@RestController
+@Controller
 @RequestMapping("/session")
 public class SessionController {
 
@@ -58,6 +60,16 @@ public class SessionController {
     public List<UserDTO> getSessionByDay(@PathVariable int id){
         return sessionService.getAllUsersInSession(id);
     }
+
+    @PostMapping("/addNewSession")
+    public ModelAndView addNewMovie(@ModelAttribute Session session, Model model){
+        model.addAttribute("activePage", "admin");
+        sessionService.add(session);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/admin");
+        return modelAndView;
+    }
+
 
 //    @GetMapping("/getCountFilmsToday")
 //    public List<SessionDTOResponse> filmsToday(){

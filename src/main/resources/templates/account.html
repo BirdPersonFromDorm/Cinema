@@ -50,25 +50,14 @@
     </div>
 </header>
 
-<div class="wrapper">
+<wrapper class="wrapper">
 
 
-    <main class="w3-content w3-container w3-padding-64 account-main">
+    <main class="w3-content w3-container w3-padding-64 main">
 
         <div id="about">
             <h3 class="w3-center">You can see you order ticket here</h3>
         </div>
-
-
-        <!--    <div class="w3-row-padding" th:each="ticket : ${tickets}">-->
-        <!--        <div class="w3-third w3-container w3-margin-bottom">-->
-        <!--            <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80" alt="Norway" style="width:100%" class="w3-hover-opacity">-->
-        <!--            <div class="w3-container w3-white">-->
-        <!--                <p><b th:text="${ticket.session.movie.name}">Lorem Ipsum</b></p>-->
-        <!--                <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
 
         <div class="w3-row-padding new">
             <div class="w3-third w3-container w3-margin-bottom" th:each="ticket : ${tickets}">
@@ -98,7 +87,7 @@
         </div>
     </footer>
 
-</div>
+</wrapper>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 

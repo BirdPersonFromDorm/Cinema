@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <title>Cinema</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,23 +16,35 @@
 
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
     <div class="w3-display-middle" style="white-space:nowrap;">
-        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-small">SHAKHTAR</span></span>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span
+                class="w3-hide-small">SHAKHTAR</span></span>
     </div>
 </div>
 
 
+<div class="w3-content" style="max-width:1100px">
 
-<div class="w3-content w3-container w3-padding-64" id="about">
-    <h3 class="w3-center">ABOUT ME</h3>
-    <p>We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-        qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+        <div class="w3-row w3-padding-64 fsdfew" th:each="allNew, iStat  : ${allNews}"
+             th:style="${iStat.odd}? 'display: flex; flex-direction: row-reverse;'">
+            <div class="w3-col m6 w3-padding-large w3-hide-small">
+                <img th:src="${allNew.newsImg}" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600"
+                     height="750">
+            </div>
+
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center" th:text="${allNew.newsTitle}"></h1><br>
+                <p class="w3-large" th:text="${allNew.newsMainDiscription}"></p>
+                <p class="w3-large w3-text-grey w3-hide-medium" th:text="${allNew.newsSecondDiscription}"></p>
+            </div>
+        </div>
 
 </div>
 
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>

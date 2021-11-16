@@ -19,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class MovieDTO {
 
-
+    private int movieId;
     private String movieName;
     private String movieDiscription;
     private String movieImg;
@@ -28,6 +28,7 @@ public class MovieDTO {
 
     public MovieDTO mapToDTO(Movie movie) {
         MovieDTO movieDTOResponse = new MovieDTO();
+        movieDTOResponse.setMovieId(movie.getMovieId());
         movieDTOResponse.setMovieName(movie.getName());
         movieDTOResponse.setMovieDiscription(movie.getDiscription());
         movieDTOResponse.setMovieImg(movie.getImg());

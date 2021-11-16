@@ -7,6 +7,7 @@ import com.example.demo.Service.UserService;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/user")
 @Builder
 public class UserController {
@@ -49,12 +50,6 @@ public class UserController {
     }
 
 
-    @GetMapping("/admin")
-    public UserDTO registerUser(){
-        return userService.registerUser();
-
-    }
-
     @PostMapping("/registration")
     public ModelAndView registration(@ModelAttribute User user, Model model){
         model.addAttribute("activePage", "login");
@@ -63,18 +58,6 @@ public class UserController {
         modelAndView.setViewName("redirect:/");
         return modelAndView;
     }
-
-
-    @GetMapping("/home")
-    public String temp(){
-        return "Hello";
-    }
-    @GetMapping("/user/home")
-    public String temp2(){
-        return "Hello";
-    }
-
-
 
 
     @GetMapping("/all")

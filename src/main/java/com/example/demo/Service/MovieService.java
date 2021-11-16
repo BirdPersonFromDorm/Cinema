@@ -3,6 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.DTO.MovieDTO;
 import com.example.demo.DTO.UserDTO;
 import com.example.demo.Model.Movie;
+import com.example.demo.Model.Role;
 import com.example.demo.Model.Session;
 import com.example.demo.Model.User;
 import com.example.demo.repository.MovieRepository;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,7 +51,9 @@ public class MovieService {
         }
         return movieDTOToShow;
     }
-    
+    public void addNewMovie(Movie movie){
+        movieRepository.save(movie);
+    }
 
 
 }

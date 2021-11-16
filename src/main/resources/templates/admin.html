@@ -17,23 +17,26 @@
 <header>
     <div class="w3-top black-header">
         <div class="w3-bar" id="myNavbar">
-            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+               href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
                 <i class="fa fa-bars"></i>
             </a>
             <a th:href="@{/}" class="w3-bar-item w3-button">HOME</a>
             <a th:href="@{/movie}" class="w3-bar-item w3-button w3-hide-small"><i class=""></i> FILMS</a>
             <a th:href="@{/about}" class="w3-bar-item w3-button w3-hide-small"><i class="fa"></i> ABOUT</a>
             <div sec:authorize="isAnonymous()">
-                <a th:href="@{/login}"  class="w3-bar-item w3-button w3-hide-small w3-right ">LOGIN</a>
-                <a th:href="@{/registration}"  class="w3-bar-item w3-button w3-hide-small w3-right ">REGISTER</a>
+                <a th:href="@{/login}" class="w3-bar-item w3-button w3-hide-small w3-right ">LOGIN</a>
+                <a th:href="@{/registration}" class="w3-bar-item w3-button w3-hide-small w3-right ">REGISTER</a>
             </div>
-            <div sec:authorize="isAuthenticated() and hasRole('Admin')" >
-                <a th:href="@{/logout}"   class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
-                <a sec:authentication="name" th:href="@{/admin}" class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
+            <div sec:authorize="isAuthenticated() and hasRole('Admin')">
+                <a th:href="@{/logout}" class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
+                <a sec:authentication="name" th:href="@{/admin}"
+                   class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
             </div>
             <div sec:authorize="isAuthenticated() and hasRole('User')">
-                <a th:href="@{/logout}"   class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
-                <a sec:authentication="name" th:href="@{/account}" class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
+                <a th:href="@{/logout}" class="w3-bar-item w3-button w3-hide-small w3-right ">LOGOUT</a>
+                <a sec:authentication="name" th:href="@{/account}"
+                   class="w3-bar-item w3-button w3-hide-small w3-right upperLogo"></a>
             </div>
         </div>
 
@@ -47,33 +50,166 @@
     </div>
 </header>
 
+<wrapper class="wrapper">
 
-<main class="w3-content w3-container w3-padding-64 account-main">
 
-    <div class="w3-row-padding">
-        <div class="w3-third w3-container w3-margin-bottom">
-            <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80" alt="Norway" style="width:100%" class="w3-hover-opacity">
-            <div class="w3-container w3-white">
-                <p><b>Lorem Ipsum</b></p>
-                <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+    <main class="main w3-padding-64 w3-content w3-container">
+
+        <div class="w3-section w3-padding-16 border ">
+            <button class="w3-button w3-white color-for-link" onClick="allNews();return false;" id="linkAllNews">
+                News
+            </button>
+            <button class="w3-button w3-white color-for-link" onClick="allUsers();return false;" id="linkAllUsers">
+                Users
+            </button>
+            <button class="w3-button w3-white color-for-link" onClick="allSessions();return false;"
+                    id="linkAllSessions">Sessions
+            </button>
+            <button class="w3-button w3-white color-for-link" onClick="allMovies();return false;" id="linkAllMovies">
+                Movies
+            </button>
+        </div>
+
+        <div id="allUsers">
+            <table class="w3-table w3-striped w3-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+                <tr th:each="user: ${users}">
+                    <td th:text="${user.login}"></td>
+                    <td th:text="${user.role}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="allNews">
+
+        </div>
+
+        <div id="allSessions">
+            <div><button onclick="document.getElementById('addNewSession').style.display='block'" class="w3-button w3-block color-for-link"> ADD NEW SESSION </button></div>
+            <h1>Today Sessions</h1>
+            <div class="w3-row-padding new">
+                <div class="w3-third w3-container w3-margin-bottom" th:each="todaySession : ${todaySessions}">
+                    <div class="container">
+                        <img th:src="${todaySession.movieImg}" alt="Norway"
+                             style="width:400px;height:450px; width:100%" class="w3-hover-opacity image">
+                    </div>
+                    <div class="w3-container w3-white">
+                        <div class="w3-container w3-white">
+                            <p><b>Name: </b><b th:text="${todaySession.movieName}"></b></p>
+                            <p>Discription: <span th:text="${todaySession.movieDiscription}"></span></p>
+                            <p>Time: <span th:text="${#temporals.format(todaySession.date, 'HH:mm')}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h1>Tomorrow Sessions</h1>
+            <div class="w3-row-padding new">
+                <div class="w3-third w3-container w3-margin-bottom" th:each="tomorrowSession : ${tomorrowSessions}">
+                    <div class="container">
+                        <img th:src="${tomorrowSession.movieImg}" alt="Norway"
+                             style="width:400px;height:450px; width:100%" class="w3-hover-opacity image">
+                    </div>
+                    <div class="w3-container w3-white">
+                        <div class="w3-container w3-white">
+                            <p><b>Name: </b><b th:text="${tomorrowSession.movieName}"></b></p>
+                            <p>Discription: <span th:text="${tomorrowSession.movieDiscription}"></span></p>
+                            <p>Time: <span th:text="${#temporals.format(tomorrowSession.date, 'HH:mm')}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="allMovies">
+            <div class="w3-row-padding new">
+                <div class="w3-third w3-container w3-margin-bottom" th:each="movies : ${movie}">
+                    <div class="container">
+                        <img th:src="${movies.movieImg}" alt="Norway"
+                             style="width:400px;height:450px; width:100%" class="w3-hover-opacity image">
+                    </div>
+                    <div class="w3-container w3-white">
+                        <div class="w3-container w3-white">
+                            <p><b>Name: </b><b th:text="${movies.movieName}"></b></p>
+                            <p>Discription: <span th:text="${movies.movieDiscription}"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-third w3-container w3-margin-bottom">
+                    <div class="container">
+                        <img src="https://cdn4.iconfinder.com/data/icons/media-58/24/movie-add-media-clip--512.png"
+                             alt="Norway"
+                             style="width:400px;height:450px; width:100%" class="w3-hover-opacity image">
+                        <div class="overlay">
+                            <button onclick="document.getElementById('addNewMovie').style.display='block'" class="btn">
+                                Add New
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w3-container w3-white">
+                        <div class="w3-container w3-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="addNewSession" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom padd">
+                <div class="w3-container w3-black">
+                    <span onclick="document.getElementById('addNewSession').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Add New Session</h1>
+                </div>
+                <div class="w3-container">
+                    <p>Enter the required data for the Session: </p>
+                    <form th:action="@{/session/addNewSession}" th:object="${session}" method="post">
+                        <input name="date" class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" value="2020-11-16T20:00">
+                        <input name="price" class="w3-input w3-padding-16 w3-border marg" placeholder="Price">
+                        <select name="movie" class="w3-input w3-padding-16 w3-border marg" >
+                            <option th:each="movies : ${movie}" th:value="${movies.movieId}" th:text="${movies.movieName}"></option>
+                        </select>
+                        <button class="w3-bar marg" type="submit">Add</button>
+                    </form>
+                </div>
             </div>
         </div>
 
-</main>
 
 
+        <div id="addNewMovie" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom padd">
+                <div class="w3-container w3-black">
+                    <span onclick="document.getElementById('addNewMovie').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Add New Movie</h1>
+                </div>
+                <div class="w3-container">
+                    <p>Enter the required data for the Movie: </p>
+                    <form th:action="@{/movie/addNewMovie}" th:object="${movie}" method="post">
+                        <input name="name" class="w3-input w3-padding-16 w3-border marg" placeholder="Name">
+                        <input name="discription" class="w3-input w3-padding-16 w3-border marg" placeholder="Discription">
+                        <input name="img" class="w3-input w3-padding-16 w3-border marg" placeholder="Img">
+                        <button class="w3-bar marg" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<footer class="w3-center w3-black w3-padding-64 w3-opacity account-footer">
-    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-    <div class="w3-xlarge w3-section">
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <i class="fa fa-instagram w3-hover-opacity"></i>
-        <i class="fa fa-snapschat w3-hover-opacity"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-        <i class="fa fa-twitter w3-hover-opacity"></i>
-        <i class="fa fa-linkedin w3-hover-opacity"></i>
-    </div>
-</footer>
+
+    <footer class="w3-center w3-black w3-padding-64 w3-opacity account-footer">
+        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+        <div class="w3-xlarge w3-section">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapschat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+    </footer>
+
+</wrapper>
 
 <script type="text/javascript" th:src="@{/js/js.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

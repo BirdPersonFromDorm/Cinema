@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.DTO.MovieDTO;
 import com.example.demo.Model.Movie;
+import com.example.demo.Model.User;
 import com.example.demo.Service.MovieService;
 import com.example.demo.Service.SessionService;
 import com.example.demo.repository.MovieRepository;
@@ -19,7 +20,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-//@RestController
 @RequestMapping("/movie")
 public class MovieController {
 
@@ -63,6 +63,14 @@ public class MovieController {
         return "movie";
     }
 
+    @PostMapping("/addNewMovie")
+    public ModelAndView addNewMovie(@ModelAttribute Movie movie, Model model){
+        model.addAttribute("activePage", "admin");
+        movieService.addNewMovie(movie);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/admin");
+        return modelAndView;
+    }
 
 
 }
