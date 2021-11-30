@@ -12,7 +12,7 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TicketService {
@@ -56,4 +56,38 @@ public class TicketService {
         Ticket save = ticketRepository.save(ticket);
         return ticketDTO.mapToDTOT(save);
     }
+
+    public void addNewTicketToUser(Ticket ticket, User user) {
+        ticket.setUser(user);
+        ticketRepository.save(ticket);
+    }
+
+
+    public Map<String, Integer> getCountOfMovie (){
+        List<Ticket> all = ticketRepository.findAll();
+
+        List<String> lst = new ArrayList<String>();
+
+        for (int i = 0; i < all.size(); i++) {
+            lst.add(all.get(i).getSession().getMovie().getName());
+        }
+
+
+        Map<String, Integer> mp = new HashMap<String, Integer>();
+
+        for (String string : lst) {
+            // если уже есть ключ, то прибавляем единицу
+            if(mp.keySet().contains(string)) {
+                mp.put(string, mp.get(string) + 1);
+                // Если нет, то кладем ключ и присваиваем значение 1
+            } else {
+                mp.put(string, 1);
+            }
+        }
+
+        return mp;
+    }
+
+
+
 }

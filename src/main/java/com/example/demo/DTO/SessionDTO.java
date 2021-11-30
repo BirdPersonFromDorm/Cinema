@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 public class SessionDTO {
 
     private LocalDateTime date;
+    private int sessionId;
     private Double price;
     private String movieName;
     private String movieDiscription;
@@ -26,6 +27,7 @@ public class SessionDTO {
 
     public SessionDTO mapToDTO(Session session) {
         SessionDTO sessionDTOResponse = new SessionDTO();
+        sessionDTOResponse.setSessionId(session.getSessionId());
         sessionDTOResponse.setDate(session.getDate());
         sessionDTOResponse.setPrice(session.getPrice());
         sessionDTOResponse.setMovieName(session.getMovie().getName());

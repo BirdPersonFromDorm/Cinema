@@ -89,7 +89,7 @@ public class UserService {
 
     }
 
-    public User getAllTicketsByUser(String login){
+    public User getUserByLogin(String login){
         return userRepository.findByLogin(login);
     }
 

@@ -3,9 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.DTO.UserDTO;
 import com.example.demo.Model.Movie;
 import com.example.demo.Model.Session;
-import com.example.demo.Service.MovieService;
-import com.example.demo.Service.SessionService;
-import com.example.demo.Service.UserService;
+import com.example.demo.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,6 +30,11 @@ public class AdminController {
     @Autowired
     private SessionService sessionService;
 
+    @Autowired
+    private NewsSercive newsSercive;
+
+    @Autowired
+    private TicketService ticketService;
 
     @GetMapping("")
     public String getAllUsers(Model model){
@@ -39,6 +43,8 @@ public class AdminController {
         model.addAttribute("movie", movieService.getAllMovie());
         model.addAttribute("todaySessions", sessionService.getTodaySession());
         model.addAttribute("tomorrowSessions", sessionService.getTomorrowSession());
+        model.addAttribute("allNews", newsSercive.getAllNews());
+        model.addAttribute("countOfMovie", ticketService.getCountOfMovie());
         return "admin";
     }
 

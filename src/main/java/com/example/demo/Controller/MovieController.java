@@ -60,6 +60,8 @@ public class MovieController {
         model.addAttribute("activePage", "movie");
         model.addAttribute("movie", movieService.getAllMovie());
         model.addAttribute("todaySessions", sessionService.getTodaySession());
+        model.addAttribute("tomorrowSessions", sessionService.getTomorrowSession());
+        model.addAttribute("dayAfterTomorrowSessions", sessionService.getDayAfterTomorrowSessions());
         return "movie";
     }
 

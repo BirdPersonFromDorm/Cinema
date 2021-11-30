@@ -37,11 +37,6 @@ public class SessionController {
         return sessionService.getById(id);
     }
 
-    @GetMapping("/getAll/{id}")
-    public Session getAllInfo(@PathVariable int id){
-        return sessionService.getAllIngo(id);
-    }
-
     @GetMapping("/getTodaySession")
     public List<SessionDTO> getTodaySession(){
         return sessionService.getTodaySession();
@@ -71,9 +66,5 @@ public class SessionController {
     }
 
 
-//    @GetMapping("/getCountFilmsToday")
-//    public List<SessionDTOResponse> filmsToday(){
-//        return sessionService.getCountFilmsToday();
-//    }
 
 }

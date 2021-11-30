@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import com.example.demo.DTO.MovieDTO;
 import com.example.demo.DTO.SessionDTO;
 import com.example.demo.DTO.UserDTO;
 import com.example.demo.Model.Movie;
@@ -64,6 +65,31 @@ public class SessionService {
                 .collect(Collectors.toList());
     }
 
+    public List<SessionDTO> getDayAfterTomorrowSessions() {
+        List<Session> all = sessionRepository.findAll();
+        LocalDate now = LocalDate.now().plusDays(2);
+
+        return all.stream()
+                .filter(x -> x.getDate().toLocalDate().equals(now))
+                .filter(x -> Objects.nonNull(x.getMovie()))
+                .map(x -> sessionDTOResponse.mapToDTO(x))
+                .collect(Collectors.toList());
+    }
+
+    public List<SessionDTO> getSessionsFromTodayToDayAfterTomorrow() {
+        List<Session> all = sessionRepository.findAll();
+        List<LocalDate> listOfDays = new ArrayList<>();
+        listOfDays.add(LocalDate.now());
+        listOfDays.add(LocalDate.now().plusDays(1));
+        listOfDays.add(LocalDate.now().plusDays(2));
+
+        return all.stream()
+                .filter(x -> x.getDate().toLocalDate().equals(listOfDays.get(0)) || x.getDate().toLocalDate().equals(listOfDays.get(1)) || x.getDate().toLocalDate().equals(listOfDays.get(2)) )
+                .filter(x -> Objects.nonNull(x.getMovie()))
+                .map(x -> sessionDTOResponse.mapToDTO(x))
+                .collect(Collectors.toList());
+    }
+
     public List<SessionDTO> getSessionByDay(String date) {
         List<Session> all = sessionRepository.findAll();
         LocalDate localDate = LocalDate.parse(date);
@@ -93,27 +119,13 @@ public class SessionService {
         return collect;
     }
 
-
-//    public List<SessionDTOResponse> getCountFilmsToday() {
-//        List<Session> all = sessionRepository.findAll();
-//        List<String> nameOfFilm= new ArrayList<>();
-//
-//        List<SessionDTOResponse> collect = all.stream()
-//                .filter(x -> x.getDate().equals(LocalDate.now()))
-//                .map(x -> sessionDTOResponse.mapToDTO(x))
-//                .collect(Collectors.toList());
-//
-//        for (int i = 0; i < collect.size(); i++) {
-//            nameOfFilm.add(collect.get(i).getMovieName())
-//        }
-//
-//        return collect;
-//    }
-
-
-    public Session getAllIngo(int id) {
-        Optional<Session> byId = sessionRepository.findById(id);
-        return byId.orElseGet(Session::new);
+    public List<SessionDTO> getAllSession(){
+        List<Session> all = sessionRepository.findAll();
+        List<SessionDTO> sessionDTOToShow = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++) {
+            sessionDTOToShow.add(sessionDTOResponse.mapToDTO(all.get(i)));
+        }
+        return sessionDTOToShow;
     }
 
 

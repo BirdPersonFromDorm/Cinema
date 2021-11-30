@@ -51,6 +51,7 @@ public class MovieService {
         }
         return movieDTOToShow;
     }
+
     public void addNewMovie(Movie movie){
         movieRepository.save(movie);
     }

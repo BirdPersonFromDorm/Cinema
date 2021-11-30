@@ -47,6 +47,9 @@ header{
 	font-family: 'Ubuntu', sans-serif;
 }
 
+.w3-button-m{
+	margin: 2px;
+}
 
 
 .forgot {
@@ -61,7 +64,7 @@ a {
 	text-decoration: none
 }
 
-#todayMovie{
+#tomorrowMovie, #dayAfterTomorrowMovie{
 	display: none;
 }
 
@@ -151,9 +154,10 @@ body{
 	width: 80%;
 }
 
-#allSessions, #allMovies{
+#allSessions, #allMovies, #allNews, #allDiagrams{
 	display: none;
 }
+
 .marg{
 	margin: 5px;
 }
@@ -173,4 +177,231 @@ body{
 
 .fsdfew:last-child{
 	border-bottom: none;
+}
+
+/*admin news*/
+
+section {
+	width: 90%;
+	margin: 20px auto;
+	position: relative;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+@media only screen and (min-width: 1024px) {
+	article {
+		display: flex;
+	}
+	section {
+		width: 30%;
+	}
+}
+
+section:hover .scroll {
+	top: 0;
+}
+
+.project {
+	width: 100%;
+	display: block;
+	border-radius: 2px;
+}
+
+.scroll {
+	position: absolute;
+	top: 100%;
+	height: 100%;
+	background: rgba(256, 256, 256, 0.8);
+	color: #333;
+	/*   display: none; */
+	transition: top 0.6s;
+}
+
+.scroll h1 {
+	padding: 10px;
+	font-size: 20px;
+	letter-spacing: 0.2em;
+	text-align: center;
+}
+.scroll p {
+	padding: 10px;
+}
+
+
+
+/*admin news*/
+
+
+/* Mohave & Open Sans Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Mohave:wght@300;700&family=Open+Sans&display=swap");
+/* Fonts & Colors */
+:root {
+	--title-font: "Mohave", sans-serif;
+	--body-font: "Open Sans", sans-serif;
+	--orange: hsl(0, 100%, 65%);
+	--lighter-orange: hsl(0, 100%, 77%);
+	--grey: hsl(197, 3%, 46%);
+	--dark: hsl(0, 0%, 16%);
+	--white: hsl(0, 0%, 100%);
+}
+
+/* General */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+::selection {
+	background-color: var(--lighter-orange);
+	color: var(--white);
+}
+
+p {
+	margin: 0;
+}
+p:not(:last-child) {
+	margin-bottom: 14px;
+}
+
+ul {
+	list-style: none;
+}
+
+img {
+	width: 100%;
+}
+
+/* Layout */
+.mainNews {
+	max-width: 12000px;
+	margin: 0 auto;
+}
+
+/* Typography */
+.card_title {
+	font-family: var(--title-font);
+	font-size: 20px;
+	line-height: 24px;
+	text-transform: uppercase;
+}
+
+.card_text p {
+	font-family: var(--body-font);
+	font-size: 14px;
+	line-height: 24px;
+}
+
+/* Utilities */
+.orange {
+	color: var(--orange);
+}
+
+.note-sm {
+	color: var(--grey);
+	font-family: var(--title-font);
+	font-size: 14px;
+}
+
+/* Components */
+.cards {
+	align-items: start;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 50px 0;
+}
+.cards_item {
+	display: flex;
+	padding: 1rem;
+}
+
+.card {
+	background-color: var(--white);
+	border-radius: 0.25rem;
+	box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+.card_content {
+	padding: 26px 16px 16px;
+}
+.card_title {
+	margin-bottom: 5px;
+}
+.card_text {
+	margin: 16px 0;
+}
+.card_btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 12px;
+	text-transform: capitalize;
+	font-family: var(--body-font);
+	float: right;
+}
+.card_btn:hover {
+	text-decoration: underline;
+}
+
+/* Media queries */
+@media (min-width: 40rem) {
+	.cards_item {
+		width: 50%;
+	}
+}
+@media (min-width: 56rem) {
+	.cards_item {
+		width: 33.3333%;
+	}
+}
+
+
+
+
+/*bgc button*/
+.card_image{
+	position: relative;
+}
+.card_image:hover{
+	opacity:0.7;
+}
+
+/* Make the image responsive */
+.card_image img{
+	width: 100%;
+	height: auto;
+}
+
+
+.card_image .bcg-btn{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	background-color: #494949;
+	color: white;
+	font-size: 16px;
+	padding: 12px 24px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.bcg-btn{
+	position:absolute;
+	display:none;
+}
+.card_image:hover .bcg-btn{
+	display:block;
+}
+
+.newsDiagram{
+	height: 500px;
+	max-height: 100%;
 }

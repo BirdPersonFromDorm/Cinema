@@ -59,49 +59,11 @@ public class UserController {
         return modelAndView;
     }
 
-
     @GetMapping("/all")
     public List<UserDTO> getAllUsers(){
         return userService.getAllUsers();
     }
 
-
-
-
-
-
-
-
-    //    @GetMapping("/update/{id}")
-//    public User updateUserById(@PathVariable Long id, @RequestBody User user){
-//        return userService.updateUserById(id, user);
-//    }
-
-//    @GetMapping("/all")
-//    public List<User> getAllUsers() {
-//        return userService.getAllUsers();
-//    }
-//
-//    @GetMapping("/byId/{id}")
-//    public User getUserByID(@PathVariable Long id) {
-//        return userService.getUserByID(id);
-//    }
-//
-//    @GetMapping("/delete/{id}")
-//    public boolean deleteByID(@PathVariable Long id) {
-//        return userService.deleteByID(id);
-//    }
-//
-//    @GetMapping("/dayBetween/from/{startYear}/{startMonth}/{startDay}/to/{endYear}/{endMonth}/{endDay}")
-//    public List<User> getUserWithDateBefore(@PathVariable int startYear,
-//                                            @PathVariable int startMonth,
-//                                            @PathVariable int startDay,
-//                                            @PathVariable int endYear,
-//                                            @PathVariable int endMonth,
-//                                            @PathVariable int endDay) {
-//        return userService.allUserWithBirthDay(LocalDate.of(startYear, startMonth, startDay),
-//                LocalDate.of(endYear, endMonth, endDay));
-//    }
 
 
 }

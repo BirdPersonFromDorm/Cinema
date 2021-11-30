@@ -5,6 +5,7 @@ import com.example.demo.DTO.MovieDTO;
 import com.example.demo.DTO.NewsDTO;
 import com.example.demo.Model.Movie;
 import com.example.demo.Model.News;
+import com.example.demo.Model.Session;
 import com.example.demo.repository.MovieRepository;
 import com.example.demo.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,8 @@ public class NewsSercive {
         return newsDTOToShow;
     }
 
+    public void addNews(News news) {
+        newsRepository.save(news);
+    }
 
 }

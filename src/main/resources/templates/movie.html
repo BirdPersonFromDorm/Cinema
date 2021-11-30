@@ -15,7 +15,8 @@
 
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
     <div class="w3-display-middle" style="white-space:nowrap;">
-        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-small">SHAKHTAR</span></span>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span
+                class="w3-hide-small">SHAKHTAR</span></span>
     </div>
 </div>
 
@@ -25,7 +26,8 @@
 
     <div id="about">
         <h3 class="w3-center">Movies</h3>
-        <p>The Shakhtar Club was founded in October 1999 by two enthusiasts. The goals of the club are to provide an opportunity for:<br>
+        <p>The Shakhtar Club was founded in October 1999 by two enthusiasts. The goals of the club are to provide an
+            opportunity for:<br>
             professionals - to maintain the level of the language for<br>
             students - to improve their skills for<br>
             both - to have a pleasant and useful time.</p>
@@ -33,67 +35,82 @@
     </div>
 
     <div class="w3-section w3-padding-16 border">
-        <button class="w3-button w3-white color-for-link" onClick="allMovie();return false;" id="linkAll">ALL</button>
-        <button class="w3-button w3-white color-for-link" onClick="todayMovie();return false;" id="linkToday">TODAY</button>
-    </div>
-
-    <div id="allMovie">
-        <div class="w3-row-padding new">
-            <div class="w3-third w3-container w3-margin-bottom" th:each="movies : ${movie}">
-                <div class="container">
-                    <img th:src="${movies.movieImg}" alt="Norway"
-                     style="width:400px;height:450px; width:100%" class="w3-hover-opacity image">
-                </div>
-                <div class="w3-container w3-white">
-                    <div class="w3-container w3-white">
-                        <p><b>Name:  </b><b th:text="${movies.movieName}"></b></p>
-                        <p>Discription: <span th:text="${movies.movieDiscription}"></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <button class="w3-button w3-white color-for-link w3-button-m" onClick="todayMovie();return false;" id="linkToday">TODAY</button>
+        <button class="w3-button w3-white color-for-link w3-button-m" onClick="tomorrowMovie();return false;" id="linkTomorrow">TOMORROW</button>
+        <button class="w3-button w3-white color-for-link w3-button-m" onClick="dayAfterTomorrowMovie();return false;" id="linkDayAfterTomorrow">DAY AFTER TOMORROW</button>
     </div>
 
     <div id="todayMovie">
-        <div class="w3-row-padding new">
-            <div class="w3-third w3-container w3-margin-bottom" th:each="todaySession : ${todaySessions}">
-                <div class="container">
-                    <img th:src="${todaySession.movieImg}" alt="Norway"
-                         style="width:400px;height:450px; width:100%" class="w3-hover-opacity">
-                    <div sec:authorize="hasRole('User')" class="overlay">
-                        <button onclick="document.getElementById('contact').style.display='block'"  class="btn">Order</button>
+        <div class="mainNews">
+            <ul class="cards">
+                <li class="cards_item" th:each="todaySession : ${todaySessions}">
+                    <div class="card">
+                        <div class="card_image">
+                            <img th:src="${todaySession.movieImg}" alt="pic"/>
+                            <button sec:authorize="hasRole('User')" class="bcg-btn"><a href="/account">Order</a></button>
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title" th:text="${todaySession.movieName}"></h2>
+                            <div class="card_text">
+                                <p th:text="${#temporals.format(todaySession.date, 'HH:mm')}"></p>
+                                <p><span th:text="${todaySession.price}"></span> $</p>
+                            </div>
+                            <button class="card_btn orange">See more +</button>
+                        </div>
                     </div>
-                </div>
-                <div class="w3-container w3-white">
-                    <div class="w3-container w3-white">
-                        <p><b>Name:  </b><b th:text="${todaySession.movieName}"></b></p>
-                        <p> Date:  <span th:text="${todaySession.date}"></span></p>
-                        <p> Price: <span th:text="${todaySession.price}"></span> $</p>
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <div id="contact" class="w3-modal">
-        <div class="w3-modal-content w3-animate-zoom">
-            <div class="w3-container w3-black">
-                <span onclick="document.getElementById('contact').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
-                <h1>Contact</h1>
-            </div>
-            <div class="w3-container">
-                <p>Reserve a place or just send us a message:</p>
-                <form action="/action_page.php" target="_blank">
-                    <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
-                    <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date"></p>
-                    <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
-                    <p><button class="w3-button" type="submit">ORDER</button></p>
-                </form>
-            </div>
+    <div id="tomorrowMovie">
+        <div class="mainNews">
+            <ul class="cards">
+                <li class="cards_item" th:each="tomorrowSession : ${tomorrowSessions}">
+                    <div class="card">
+                        <div class="card_image">
+                            <img th:src="${tomorrowSession.movieImg}" alt="pic"/>
+                            <button sec:authorize="hasRole('User')" class="bcg-btn"><a href="/account">Order</a></button>
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title" th:text="${tomorrowSession.movieName}"></h2>
+                            <div class="card_text">
+                                <p th:text="${#temporals.format(tomorrowSession.date, 'HH:mm')}"></p>
+                                <p><span th:text="${tomorrowSession.price}"></span> $</p>
+                            </div>
+                            <button class="card_btn orange">See more +</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
+
+    <div id="dayAfterTomorrowMovie">
+        <div class="mainNews">
+            <ul class="cards">
+                <li class="cards_item" th:each="dayAfterTomorrowSession : ${dayAfterTomorrowSessions}">
+                    <div class="card">
+                        <div class="card_image">
+                            <img th:src="${dayAfterTomorrowSession.movieImg}" alt="pic"/>
+                            <button sec:authorize="hasRole('User')" class="bcg-btn"><a href="/account">Order</a></button>
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title" th:text="${dayAfterTomorrowSession.movieName}"></h2>
+                            <div class="card_text">
+                                <p th:text="${#temporals.format(dayAfterTomorrowSession.date, 'HH:mm')}"></p>
+                                <p><span th:text="${dayAfterTomorrowSession.price}"></span> $</p>
+                            </div>
+                            <button class="card_btn orange">See more +</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
 </main>
-
 
 
 <div th:replace="~{fragments/footer :: footer}"></div>

@@ -55,23 +55,45 @@
 
     <main class="w3-content w3-container w3-padding-64 main">
 
-        <div id="about">
-            <h3 class="w3-center">You can see you order ticket here</h3>
+        <div>
+            <button onclick="document.getElementById('order').style.display='block'" class="w3-button w3-block color-for-link"> ADD NEW TICKET </button>
         </div>
 
-        <div class="w3-row-padding new">
-            <div class="w3-third w3-container w3-margin-bottom" th:each="ticket : ${tickets}">
-                <div class="container">
-                    <img th:src="${ticket.session.movie.img}" alt="Norway"
-                         style="width:400px;height:450px; width:100%" class="w3-hover-opacity image">
-                </div>
-                <div class="w3-container w3-white">
-                    <div class="w3-container w3-white">
-                        <p><b>Name: </b><b th:text="${ticket.session.movie.name}"></b></p>
+        <div class="mainNews">
+            <ul class="cards">
+                <li class="cards_item" th:each="ticket : ${tickets}">
+                    <div class="card">
+                        <div class="card_image">
+                            <img th:src="${ticket.session.movie.img}" alt="mixed vegetable salad in a mason jar. " />
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title" th:text="${ticket.session.movie.name}"> </h2>
+                            <button class="card_btn orange">See more +</button>
+                        </div>
                     </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="order" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom padd">
+                <div class="w3-container w3-black">
+                    <span onclick="document.getElementById('order').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Add New Movie</h1>
+                </div>
+                <div class="w3-container">
+                    <p>Enter the required data for the Movie: </p>
+                    <form th:action="@{/ticket/addNewTicketToUser}" th:object="${ticketForAdd}" method="post">
+                        <select name="session" class="w3-input w3-padding-16 w3-border marg" >
+                            <option th:each="SessionForAccount : ${allSessionForAccount}" th:value="${SessionForAccount.sessionId}" th:text="${SessionForAccount.movieName}"></option>
+                        </select>
+                        <button class="w3-bar marg" type="submit">Add</button>
+                    </form>
                 </div>
             </div>
         </div>
+
     </main>
 
 
