@@ -7,14 +7,18 @@ import com.example.demo.Service.MovieService;
 import com.example.demo.Service.SessionService;
 import com.example.demo.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,6 +26,8 @@ import java.util.stream.IntStream;
 @Controller
 @RequestMapping("/movie")
 public class MovieController {
+
+    private static final String returAdmintHTML = "redirect:/admin";
 
     @Autowired
     private MovieService movieService;
@@ -66,12 +72,9 @@ public class MovieController {
     }
 
     @PostMapping("/addNewMovie")
-    public ModelAndView addNewMovie(@ModelAttribute Movie movie, Model model){
-        model.addAttribute("activePage", "admin");
+    public String addNewMovie( @ModelAttribute Movie movie, Model model){
         movieService.addNewMovie(movie);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/admin");
-        return modelAndView;
+        return returAdmintHTML;
     }
 
 

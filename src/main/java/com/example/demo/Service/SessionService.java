@@ -127,8 +127,4 @@ public class SessionService {
         }
         return sessionDTOToShow;
     }
-
-
-
-
 }

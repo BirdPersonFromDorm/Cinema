@@ -23,7 +23,6 @@ public class NewsSercive {
     @Autowired
     private NewsDTO newsDTO;
 
-
     public List<NewsDTO> getAllNews(){
         List<News> all = newsRepository.findAll();
         List<NewsDTO> newsDTOToShow = new ArrayList<>();

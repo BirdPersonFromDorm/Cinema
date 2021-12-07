@@ -1,7 +1,5 @@
 package com.example.demo.Controller;
 
-
-
 import com.example.demo.DTO.TicketDTO;
 import com.example.demo.Model.Movie;
 import com.example.demo.Model.Ticket;
@@ -20,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/ticket")
 public class TicketController {
+
+    private static final String returAdmintHTML = "redirect:/account";
 
     @Autowired
     private TicketService ticketService;
@@ -53,14 +53,11 @@ public class TicketController {
     }
 
     @PostMapping("/addNewTicketToUser")
-    public ModelAndView addNewTicketToUser(@ModelAttribute Ticket ticket, Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String name = authentication.getName();
-        User user = userService.getUserByLogin(name);
-
+    public String addNewTicketToUser(@ModelAttribute Ticket ticket, Model model){
+        User user = userService.getUserByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
         ticketService.addNewTicketToUser(ticket, user);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/account");
-        return modelAndView;
+
+        return returAdmintHTML;
     }
+
 }

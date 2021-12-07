@@ -19,14 +19,15 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
     private UserDTO userDTO;
+
     @Autowired
     private PasswordEncoder encoder;
-
 
     public User addUser(User user){
         User save = userRepository.save(user);
@@ -53,7 +54,6 @@ public class UserService {
         return userDTO.mapToDTO(save);
     }
 
-
     public User getAllIngo(int id){
         Optional<User> byId = userRepository.findById(id);
         return byId.orElseGet(User::new);
@@ -75,7 +75,6 @@ public class UserService {
         return userDTO.mapToDTO(save);
     }
 
-
     public void register(User user){
 
         String encodePwd = encoder.encode(user.getPassword());
@@ -93,22 +92,6 @@ public class UserService {
         return userRepository.findByLogin(login);
     }
 
-
-
-
-
-//    public User updateUserById(Long id, User user){
-//        Optional<User> byId = userRepository.findById(id);
-//        if(byId.isPresent()){
-//            userRepository.updateById(id,user);
-//        }
-//        return byId.get();
-//    }
-//    public User foo(Session session){
-//        User user = userRepository.getUserBySession(session);
-//        return user;
-//    }
-
     public List<UserDTO> getAllUsers(){
         List<User> all = userRepository.findAll();
         List<UserDTO> userDTOToShow = new ArrayList<>();
@@ -117,42 +100,5 @@ public class UserService {
         }
         return userDTOToShow;
     }
-
-//    public boolean addUser(User user){
-//        DataBase.users.add(user);
-//        return true;
-//    }
-//    public List<User> getAllUsers(){
-//        return DataBase.users;
-//    }
-//
-//    public User getUserByID(Long id){
-//        User find = null;
-//        for (int i = 0; i < DataBase.users.size(); i++) {
-//            if (DataBase.users.get(i).getId() == id){
-//                find = DataBase.users.get(i);
-//            }
-//        }
-//        return find;
-//    }
-//    public boolean deleteByID(Long id) {
-//        for (int i = 0; i < DataBase.users.size(); i++) {
-//            if (DataBase.users.get(i).getId() == id) {
-//                DataBase.users.remove(i);
-//            }
-//        }
-//        return true;
-//    }
-//    public List<User> allUserWithBirthDay(LocalDate start, LocalDate end){
-//        List<User> listOfUsers = new ArrayList<>();
-//        for (int i = 0; i < DataBase.users.size(); i++) {
-//            LocalDate ourDate = DataBase.users.get(i).getBirthday();
-//            if(ourDate.isBefore(end) && ourDate.isAfter(start)){
-//                listOfUsers.add(DataBase.users.get(i));
-//            }
-//        }
-//
-//        return listOfUsers;
-//    }
 
 }

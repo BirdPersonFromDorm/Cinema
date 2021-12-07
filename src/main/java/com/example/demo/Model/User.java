@@ -40,11 +40,9 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-
     @OneToMany(mappedBy = "user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
     private Set<Ticket> tickets;
-
 
     @Override
     public boolean equals(Object o) {
@@ -60,10 +58,4 @@ public class User {
     public int hashCode() {
         return userId != null ? userId.hashCode() : 0;
     }
-//    private int id;
-//    private String name;
-//    @JsonFormat(pattern="dd-MM-yyyy")
-//    private LocalDate birthday;
-
-
 }

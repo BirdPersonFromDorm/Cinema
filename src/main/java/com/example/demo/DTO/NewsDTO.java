@@ -1,6 +1,5 @@
 package com.example.demo.DTO;
 
-
 import com.example.demo.Model.Movie;
 import com.example.demo.Model.News;
 import com.example.demo.Model.Session;
@@ -33,5 +32,4 @@ public class NewsDTO {
         newsDTOResponse.setNewsImg(news.getImg());
         return newsDTOResponse;
     }
-
 }

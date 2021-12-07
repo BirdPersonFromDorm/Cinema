@@ -20,11 +20,10 @@ import java.util.Set;
 @RequestMapping("/account")
 public class AccountController {
 
-    @Autowired
-    private UserService userService;
+    private static final String returAccountHTML = "account";
 
     @Autowired
-    private TicketService ticketService;
+    private UserService userService;
 
     @Autowired
     private SessionService sessionService;
@@ -36,24 +35,9 @@ public class AccountController {
         User allTicketsByUser = userService.getUserByLogin(name);
         Set<Ticket> tickets = allTicketsByUser.getTickets();
 
-
         model.addAttribute("tickets", tickets);
         model.addAttribute("allSessionForAccount", sessionService.getSessionsFromTodayToDayAfterTomorrow());
 
-        return "account";
+        return returAccountHTML;
     }
-
-//    @PostMapping("/addNewTicketToUser")
-//    public ModelAndView addNewTicketToUser(@ModelAttribute Ticket ticket, Model model){
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String name = authentication.getName();
-//        User user = userService.getUserByLogin(name);
-//
-//        ticketService.addNewTicketToUser(ticket, user);
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("redirect:/account");
-//        return modelAndView;
-//    }
-
-
 }

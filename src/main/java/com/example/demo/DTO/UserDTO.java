@@ -17,13 +17,6 @@ public class UserDTO {
     private String login;
     private String role;
 
-//    public UserDTO mapToDTO(User user) {
-//
-//        return UserDTO.builder()
-//                .login(user.getLogin())
-//                .roleDTOList(user.getRoles().stream().map(role -> roleDTO.mapToDTO(role)).collect(Collectors.toList()))
-//                .build();
-//    }
     public UserDTO mapToDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setLogin(user.getLogin());

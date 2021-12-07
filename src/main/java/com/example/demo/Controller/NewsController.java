@@ -15,15 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/news")
 public class NewsController {
 
+    private static final String returAdmintHTML = "redirect:/admin";
+
     @Autowired
     private NewsSercive newsSercive;
 
     @PostMapping("/addNewNews")
-    public ModelAndView addNewMovie(@ModelAttribute News news, Model model){
-        model.addAttribute("activePage", "admin");
+    public String addNewMovie(@ModelAttribute News news){
         newsSercive.addNews(news);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/admin");
-        return modelAndView;
+        return returAdmintHTML;
     }
 }

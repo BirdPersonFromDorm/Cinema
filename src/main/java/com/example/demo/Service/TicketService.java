@@ -1,7 +1,5 @@
 package com.example.demo.Service;
 
-
-
 import com.example.demo.DTO.TicketDTO;
 import com.example.demo.Model.Session;
 import com.example.demo.Model.Ticket;
@@ -19,15 +17,15 @@ public class TicketService {
 
     @Autowired
     private TicketRepository ticketRepository;
+
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private SessionRepository sessionRepository;
 
     @Autowired
     private TicketDTO ticketDTO;
-
-
 
     public Ticket add(Ticket ticket){
         Ticket save = ticketRepository.save(ticket);
@@ -47,7 +45,6 @@ public class TicketService {
         return byId.orElseGet(Ticket::new);
     }
 
-
     public TicketDTO addTicketByUserId(Ticket ticket, int userID, int SessionID) {
         User userByID = userRepository.getById(userID);
         Session sessionDyID = sessionRepository.getById(SessionID);
@@ -62,7 +59,6 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
-
     public Map<String, Integer> getCountOfMovie (){
         List<Ticket> all = ticketRepository.findAll();
 
@@ -71,7 +67,6 @@ public class TicketService {
         for (int i = 0; i < all.size(); i++) {
             lst.add(all.get(i).getSession().getMovie().getName());
         }
-
 
         Map<String, Integer> mp = new HashMap<String, Integer>();
 
@@ -87,7 +82,4 @@ public class TicketService {
 
         return mp;
     }
-
-
-
 }

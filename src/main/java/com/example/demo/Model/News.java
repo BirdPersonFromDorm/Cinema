@@ -1,7 +1,9 @@
 package com.example.demo.Model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class News {
 
     @Id
@@ -24,7 +28,6 @@ public class News {
     private String secondDiscription;
     @Column(name = "img")
     private String img;
-
 
     @Override
     public boolean equals(Object o) {
